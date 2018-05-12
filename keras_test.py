@@ -33,6 +33,8 @@ model.add(Dense(units=10,kernel_initializer='normal',activation='softmax'))
 model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
 #开始训练
 train_history = model.fit(x=X_train,y=y_train_label,validation_split=0.2,epochs=10,batch_size=200,verbose=2)
+#保存模型
+model.save('my_model.h5')
 #画图函数
 def show_train_history(train_history,train,validation):
     plt.plot(train_history.history[train])
@@ -51,5 +53,6 @@ print('accracy:',scores[1])
 
 prediction = model.predict_classes(X_test)
 print(prediction[1])
+model.save('my_model.h5')
 # print(prediction.shape)
 # pd.crosstab(y_test_label1,prediction,rownames=['label'],colnames=['predict'])
